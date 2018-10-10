@@ -65,6 +65,9 @@ class Examples extends CI_Controller {
 		$crud->field_type('active','true_false');
 		$crud->required_fields('name','active');
 
+		$crud->set_relation('owner','owner','name');
+		$crud->set_relation('status','status','name');
+
 //		$crud->change_field_type('description', 'text'); 	or		//		$crud->unset_texteditor('name','full_text');
 		$output = $crud->render();
  
@@ -81,7 +84,11 @@ class Examples extends CI_Controller {
 		$crud->set_subject('objectives');
 		$crud->display_as('target_timeline','Target Time Line');		
 		$crud->field_type('active','true_false');
-		$crud->required_fields('name','active');
+		$crud->required_fields('name','active'); 	
+
+		$crud->set_relation('owner','owner','name');
+		$crud->set_relation('country','country','name');
+
 //		$crud->change_field_type('description', 'text');		
 		$output = $crud->render();
 		 
@@ -103,6 +110,7 @@ class Examples extends CI_Controller {
 		$this->_example_output($output);
 	}
 
+
 	public function type_management()
 	{
 		$crud = new grocery_CRUD();
@@ -112,9 +120,8 @@ class Examples extends CI_Controller {
 		$crud->set_subject('Type');
 		$crud->field_type('active','true_false');
 		$crud->required_fields('name','active');
-
-//		$crud->set_relation('name','owner','name');
-
+//		$crud->field_type('short_code','set',array($name));
+//		$crud->callback_edit_field( string $name , mixed $callback );
 		$output = $crud->render();
 
 		$this->_example_output($output);
@@ -126,19 +133,34 @@ class Examples extends CI_Controller {
 		$crud = new grocery_CRUD();
 		
 		$crud->set_table('owner');
-		$crud->columns('id','name','active','short_count');
+		$crud->columns('id','name','active','short_code');
 		$crud->set_subject('owner');
 
 //		$crud->callback_edit_field( string $name , mixed $callback );
 //		$crud->callback_edit_field('phone', function ($value, $primary_key) {
 //		return '+30 <input type="text" maxlength="50" value="'.$value.'" name="phone" style="width:462px">';});
+//		$crud->set_data($name,'name');
 
 		$crud->field_type('active','true_false');
-//		$crud->field_type('active','set',array('banana','orange','apple','lemon'));
 		$crud->required_fields('name','active');
 		$output = $crud->render();
-//		var_dump($output);
-//		exit();		 
+
+		$this->_example_output($output);
+	}
+
+
+
+	public function order_management()
+	{
+		$crud = new grocery_CRUD();
+		
+		$crud->set_table('order');
+		$crud->columns('OrderID','OrderNumber','ID');
+		$crud->set_subject('sta');
+//		$crud->field_type('','true_false');
+//		$crud->required_fields('name','active');
+		$output = $crud->render();
+
 		$this->_example_output($output);
 	}
 
