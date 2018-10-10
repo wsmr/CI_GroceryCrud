@@ -42,9 +42,7 @@ class Examples extends CI_Controller {
 		$crud->columns('id','name','active');
 		$crud->set_subject('country');
 //		$crud->display_as('field_name','field_label');
-//		$crud->set_relation('id','employees','firstName');
-//		$crud->set_relation('name','employees','lastName');		
-//		$crud->set_relation('active','employees','officeCode');
+		
 		$crud->field_type('active','true_false');
 		$crud->required_fields('name','active');
 		$output = $crud->render();
@@ -59,14 +57,17 @@ class Examples extends CI_Controller {
 		$crud = new grocery_CRUD();
 		
 		$crud->set_table('action_item');
-		$crud->columns('id','name','active','description','status','owner','due_date','comments','week','month','reviesed_date','qty','target_timeline','type','short_code');
+		$crud->columns
+		('id','name','active','objectives','description','status','owner','due_date','comments','week','month','reviesed_date','qty','target_timeline','type','short_code');
 		$crud->set_subject('action_item');
 		$crud->display_as('target_timeline','Target Time Line');
 		$crud->field_type('active','true_false');
 		$crud->required_fields('name','active');
 
-		$crud->set_relation('owner','owner','name');
+		$crud->set_relation('objectives','objectives','name');
+		$crud->set_relation('owner','owner','short_code');
 		$crud->set_relation('status','status','name');
+		$crud->set_relation('type','type','name');
 
 //		$crud->change_field_type('description', 'text'); 	or		//		$crud->unset_texteditor('name','full_text');
 		$output = $crud->render();
@@ -80,14 +81,18 @@ class Examples extends CI_Controller {
 		$crud = new grocery_CRUD();
 		
 		$crud->set_table('objectives');
-		$crud->columns('id','name','active','description','country','owner','due_date','comments','week','month','reviesed_date','qty','target_timeline','type','short_code');
+		$crud->columns
+		('id','name','active','description','country','owner','due_date','comments','week','month','reviesed_date','qty','target_timeline','type','short_code');
 		$crud->set_subject('objectives');
 		$crud->display_as('target_timeline','Target Time Line');		
 		$crud->field_type('active','true_false');
 		$crud->required_fields('name','active'); 	
 
-		$crud->set_relation('owner','owner','name');
+//		$crud->set_relation('owner','owner','name');
 		$crud->set_relation('country','country','name');
+		$crud->set_relation('owner','owner','{short_code}');
+		$crud->set_relation('type','type','name');
+//		$crud->set_relation('owner','owner','{name} ( {id} )'); 		//	'{name} ( {id} {short_code} )'  //	'{name} -> {id} {short_code}'
 
 //		$crud->change_field_type('description', 'text');		
 		$output = $crud->render();
