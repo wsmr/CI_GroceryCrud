@@ -15,7 +15,8 @@ foreach($css_files as $file): ?>
 		<a href='<?php echo site_url('examples/country_management')?>'>Countries</a> |
 		<a href='<?php echo site_url('examples/owner_management')?>'>Owner</a> |
 		<a href='<?php echo site_url('examples/status_management')?>'>Status</a> |
-		<a href='<?php echo site_url('examples/type_management')?>'>Type</a>
+		<a href='<?php echo site_url('examples/type_management')?>'>Type</a> | 
+		<a href='<?php echo site_url('examples/order_management')?>'>order</a>
 	</div>
 	<div style='height:20px;'></div>  
     <div style="padding: 10px">

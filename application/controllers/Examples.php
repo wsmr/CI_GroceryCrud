@@ -159,11 +159,14 @@ class Examples extends CI_Controller {
 	{
 		$crud = new grocery_CRUD();
 		
-		$crud->set_table('order');
-		$crud->columns('OrderID','OrderNumber','ID');
+		$crud->set_table('orders');
+		$crud->columns('OrderID','OrderNumber','ID','active');
 		$crud->set_subject('sta');
-//		$crud->field_type('','true_false');
-//		$crud->required_fields('name','active');
+		$crud->required_fields('ID');
+		$crud->field_type('active','true_false');
+
+//		$crud->set_relation('user_id','users','username',array('status' => 'active'),'priority ASC');
+
 		$output = $crud->render();
 
 		$this->_example_output($output);
