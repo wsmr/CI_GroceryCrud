@@ -58,7 +58,8 @@ class Examples extends CI_Controller {
 		
 		$crud->set_table('action_item');
 		$crud->columns
-		('id','name','active','objectives','description','status','owner','due_date','comments','week','month','reviesed_date','qty','target_timeline','type','short_code');
+		('id','name','active','objectives','description','status','owner','due_date','revised_date','comments','short_code');
+																	//('week','month','qty','target_timeline','type');	
 		$crud->set_subject('action_item');
 		$crud->display_as('target_timeline','Target Time Line');
 		$crud->field_type('active','true_false');
@@ -69,7 +70,7 @@ class Examples extends CI_Controller {
 		$crud->set_relation('status','status','name');
 		$crud->set_relation('type','type','name');
 
-//		$crud->change_field_type('description', 'text'); 	or		//		$crud->unset_texteditor('name','full_text');
+		$crud->unset_add_fields('week','month','qty','target_timeline','type');
 		$output = $crud->render();
  
 		$this->_example_output($output);
@@ -82,7 +83,7 @@ class Examples extends CI_Controller {
 		
 		$crud->set_table('objectives');
 		$crud->columns
-		('id','name','active','description','country','owner','due_date','comments','week','month','reviesed_date','qty','target_timeline','type','short_code');
+		('id','name','active','description','country','owner','due_date','comments','short_code','revised_date');	//('qty','target_timeline','type','week','month');
 		$crud->set_subject('objectives');
 		$crud->display_as('target_timeline','Target Time Line');		
 		$crud->field_type('active','true_false');
@@ -94,7 +95,7 @@ class Examples extends CI_Controller {
 		$crud->set_relation('type','type','name');
 //		$crud->set_relation('owner','owner','{name} ( {id} )'); 		//	'{name} ( {id} {short_code} )'  //	'{name} -> {id} {short_code}'
 
-//		$crud->change_field_type('description', 'text');		
+		$crud->unset_add_fields('week','month','qty','target_timeline','type');
 		$output = $crud->render();
 		 
 		$this->_example_output($output);
@@ -124,7 +125,7 @@ class Examples extends CI_Controller {
 		$crud->columns('id','name','active','short_code');
 		$crud->set_subject('Type');
 		$crud->field_type('active','true_false');
-		$crud->required_fields('name','active');
+		$crud->required_fields('name','active','short_code');
 //		$crud->field_type('short_code','set',array($name));
 //		$crud->callback_edit_field( string $name , mixed $callback );
 		$output = $crud->render();
@@ -147,26 +148,7 @@ class Examples extends CI_Controller {
 //		$crud->set_data($name,'name');
 
 		$crud->field_type('active','true_false');
-		$crud->required_fields('name','active');
-		$output = $crud->render();
-
-		$this->_example_output($output);
-	}
-
-
-
-	public function order_management()
-	{
-		$crud = new grocery_CRUD();
-		
-		$crud->set_table('orders');
-		$crud->columns('OrderID','OrderNumber','ID','active');
-		$crud->set_subject('sta');
-		$crud->required_fields('ID');
-		$crud->field_type('active','true_false');
-
-//		$crud->set_relation('user_id','users','username',array('status' => 'active'),'priority ASC');
-
+		$crud->required_fields('name','active','short_code');
 		$output = $crud->render();
 
 		$this->_example_output($output);
